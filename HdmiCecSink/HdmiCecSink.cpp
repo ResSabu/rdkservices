@@ -522,12 +522,15 @@ namespace WPEFramework
              printHeader(header);
              LOGINFO("Command: SetSystemAudioMode  %s audio status %d audio status is  %s \n",GetOpName(msg.opCode()),msg.status.toInt(),msg.status.toString().c_str());
           HdmiCecSink::_instance->Process_SetSystemAudioMode_msg(msg);
+          cout << "[TEL DEBUG]entered in to process with time  " <<endl;
+           cout << "The time is " <<time(NULL) << endl; 
        }
       void HdmiCecSinkProcessor::process (const ReportAudioStatus &msg, const Header &header)
        {
              printHeader(header);
              LOGINFO("Command: ReportAudioStatus  %s audio Mute status %d  means %s  and current Volume level is %d \n",GetOpName(msg.opCode()),msg.status.getAudioMuteStatus(),msg.status.toString().c_str(),msg.status.getAudioVolume());
              HdmiCecSink::_instance->Process_ReportAudioStatus_msg(msg);
+             cout << "[TEL DEBUG]entered in to process_audio mute  " <<endl;
        }
 //=========================================== HdmiCecSink =========================================
 
@@ -1013,6 +1016,8 @@ namespace WPEFramework
             JsonObject params;
             if(!HdmiCecSink::_instance)
                return;
+                cout << "[TEL DEBUG]entered in to Process_ReportAudioStatus_msg with time  " <<endl;
+           cout << "The time in Process_ReportAudioStatus_msg is " <<time(NULL) << endl; 
 			LOGINFO("Command: ReportAudioStatus  %s audio Mute status %d  means %s  and current Volume level is %d \n",GetOpName(msg.opCode()),msg.status.getAudioMuteStatus(),msg.status.toString().c_str(),msg.status.getAudioVolume());
             params["muteStatus"]  = msg.status.getAudioMuteStatus();
             params["volumeLevel"] = msg.status.getAudioVolume();
