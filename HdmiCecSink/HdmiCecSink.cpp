@@ -988,6 +988,8 @@ namespace WPEFramework
         void HdmiCecSink::Process_SetSystemAudioMode_msg(const SetSystemAudioMode &msg)
         {
             JsonObject params;
+            LOGINFO("[TEL DEBUG] inside Process_SetSystemAudioMode_msg ");
+             cout << "The time is " <<time(NULL) << endl; 
             if(!HdmiCecSink::_instance)
                return;
 
@@ -1001,6 +1003,8 @@ namespace WPEFramework
 
 	    if ( (msg.status.toInt() == 0x00) && (m_currentArcRoutingState == ARC_STATE_ARC_INITIATED))
             {
+            LOGINFO("[TEL DEBUG] inside msg.status.toInt ");
+             cout << "The time is " <<time(NULL) << endl; 
 		/* ie system audio mode off -> amplifier goign to standby but still ARC is in initiated state,stop ARC and 
 		 bring the ARC state machine to terminated state*/
                  LOGINFO("system audio mode off message but arc is not in terminated state so stopping ARC");
@@ -1035,6 +1039,8 @@ namespace WPEFramework
 			   _instance->smConnection->sendTo(LogicalAddress(logicalAddress), MessageEncoder().encode(UserControlPressed(UICommand::UI_COMMAND_VOLUME_UP)),100);
 			   break;
 		       case VOLUME_DOWN:
+              LOGINFO("[TEL DEBUG] Inside send key press event Volume Down  at time");    
+               cout << "The time is " <<time(NULL) << endl; 
 			   _instance->smConnection->sendTo(LogicalAddress(logicalAddress), MessageEncoder().encode(UserControlPressed(UICommand::UI_COMMAND_VOLUME_DOWN)), 100);
                           break;
 		       case MUTE:
